@@ -3,6 +3,7 @@ const router = express.Router();
 const hotelController = require('../controllers/hotelController');
 const auth = require('../middleware/auth');
 const roleCheck = require('../middleware/roleCheck');
+const upload = require('../middleware/upload');
 
 // @route   GET api/hotels
 // @desc    Get all hotels
@@ -24,7 +25,7 @@ router.get('/:id', hotelController.getHotelById);
 // @access  Private + hotel_owner only
 router.post(
   '/',
-  [auth, roleCheck(['hotel_owner'])],
+  [auth, roleCheck(['hotel_owner']), upload.array('images', 5)],
   hotelController.createHotel
 );
 
@@ -33,7 +34,7 @@ router.post(
 // @access  Private + hotel_owner only
 router.put(
   '/:id',
-  [auth, roleCheck(['hotel_owner'])],
+  [auth, roleCheck(['hotel_owner']), upload.array('images', 5)],
   hotelController.updateHotel
 );
 
@@ -44,6 +45,15 @@ router.delete(
   '/:id',
   [auth, roleCheck(['hotel_owner'])],
   hotelController.deleteHotel
+);
+
+// @route   DELETE api/hotels/:id/images/:imageIndex
+// @desc    Delete a specific image from a hotel
+// @access  Private + hotel_owner only
+router.delete(
+  '/:id/images/:imageIndex',
+  [auth, roleCheck(['hotel_owner'])],
+  hotelController.deleteHotelImage
 );
 
 module.exports = router;

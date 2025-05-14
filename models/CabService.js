@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const cabServiceSchema = new mongoose.Schema({
+const CabServiceSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -9,21 +9,31 @@ const cabServiceSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  location: {
-    address: {
-      type: String,
-      required: true
-    },
-    city: {
-      type: String,
-      required: true
-    },
-    coordinates: {
-      lat: Number,
-      lng: Number
-    }
+  vehicleType: {
+    type: String,
+    required: true
   },
-  contact: {
+  vehicleModel: {
+    type: String,
+    required: true
+  },
+  licensePlate: {
+    type: String,
+    required: true
+  },
+  capacity: {
+    type: Number,
+    required: true
+  },
+  pricePerKm: {
+    type: Number,
+    required: true
+  },
+  operatingAreas: {
+    type: [String],
+    required: true
+  },
+  contactInfo: {
     phone: {
       type: String,
       required: true
@@ -33,35 +43,50 @@ const cabServiceSchema = new mongoose.Schema({
       required: true
     }
   },
-  vehicles: [{
-    type: {
-      type: String,
-      required: true
+  reviews: [{
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
     },
-    model: String,
-    capacity: Number,
-    pricePerKm: Number
+    rating: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 5
+    },
+    comment: String,
+    date: {
+      type: Date,
+      default: Date.now
+    }
   }],
-  operatingAreas: [String],
-  images: [String],
-  socialLinks: {
-    website: String,
-    facebook: String,
-    instagram: String
-  },
-  rating: {
-    type: Number,
-    min: 0,
-    max: 5,
-    default: 0
+  images: {
+    type: [String], // Array of image paths
+    default: []
   },
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  availability: {
+    type: Boolean,
+    default: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
-}, {
-  timestamps: true
 });
 
-module.exports = mongoose.model('CabService', cabServiceSchema);
+// Update the updatedAt timestamp on save
+CabServiceSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+module.exports = mongoose.model('CabService', CabServiceSchema);

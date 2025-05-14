@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const hotelSchema = new mongoose.Schema({
+const HotelSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -23,7 +23,7 @@ const hotelSchema = new mongoose.Schema({
       lng: Number
     }
   },
-  contact: {
+  contactInfo: {
     phone: {
       type: String,
       required: true
@@ -31,7 +31,8 @@ const hotelSchema = new mongoose.Schema({
     email: {
       type: String,
       required: true
-    }
+    },
+    website: String
   },
   amenities: [String],
   rooms: [{
@@ -39,32 +40,64 @@ const hotelSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    price: {
+    pricePerNight: {
       type: Number,
       required: true
     },
-    capacity: Number,
-    amenities: [String]
+    capacity: {
+      type: Number,
+      required: true
+    },
+    available: {
+      type: Boolean,
+      default: true
+    }
   }],
-  images: [String],
-  socialLinks: {
-    website: String,
-    facebook: String,
-    instagram: String
-  },
-  rating: {
+  starRating: {
     type: Number,
-    min: 0,
-    max: 5,
-    default: 0
+    min: 1,
+    max: 5
+  },
+  reviews: [{
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    rating: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 5
+    },
+    comment: String,
+    date: {
+      type: Date,
+      default: Date.now
+    }
+  }],
+  images: {
+    type: [String], // Array of image paths
+    default: []
   },
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
-}, {
-  timestamps: true
 });
 
-module.exports = mongoose.model('Hotel', hotelSchema);
+// Update the updatedAt timestamp on save
+HotelSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+module.exports = mongoose.model('Hotel', HotelSchema);

@@ -3,6 +3,7 @@ const router = express.Router();
 const restaurantController = require('../controllers/restaurantController');
 const auth = require('../middleware/auth');
 const roleCheck = require('../middleware/roleCheck');
+const upload = require('../middleware/upload');
 
 // @route   GET api/restaurants
 // @desc    Get all restaurants
@@ -24,7 +25,7 @@ router.get('/:id', restaurantController.getRestaurantById);
 // @access  Private + restaurant_owner only
 router.post(
   '/',
-  [auth, roleCheck(['restaurant_owner'])],
+  [auth, roleCheck(['restaurant_owner']), upload.array('images', 5)],
   restaurantController.createRestaurant
 );
 
@@ -33,7 +34,7 @@ router.post(
 // @access  Private + restaurant_owner only
 router.put(
   '/:id',
-  [auth, roleCheck(['restaurant_owner'])],
+  [auth, roleCheck(['restaurant_owner']), upload.array('images', 5)],
   restaurantController.updateRestaurant
 );
 
@@ -44,6 +45,15 @@ router.delete(
   '/:id',
   [auth, roleCheck(['restaurant_owner'])],
   restaurantController.deleteRestaurant
+);
+
+// @route   DELETE api/restaurants/:id/images/:imageIndex
+// @desc    Delete a specific image from a restaurant
+// @access  Private + restaurant_owner only
+router.delete(
+  '/:id/images/:imageIndex',
+  [auth, roleCheck(['restaurant_owner'])],
+  restaurantController.deleteRestaurantImage
 );
 
 module.exports = router;

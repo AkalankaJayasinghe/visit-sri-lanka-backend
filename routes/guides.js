@@ -3,6 +3,7 @@ const router = express.Router();
 const guideController = require('../controllers/guideController');
 const auth = require('../middleware/auth');
 const roleCheck = require('../middleware/roleCheck');
+const upload = require('../middleware/upload');
 
 // @route   GET api/guides
 // @desc    Get all guides
@@ -24,7 +25,7 @@ router.get('/:id', guideController.getGuideById);
 // @access  Private + guide only
 router.post(
   '/',
-  [auth, roleCheck(['guide'])],
+  [auth, roleCheck(['guide']), upload.array('images', 5)],
   guideController.createGuide
 );
 
@@ -33,7 +34,7 @@ router.post(
 // @access  Private + guide only
 router.put(
   '/:id',
-  [auth, roleCheck(['guide'])],
+  [auth, roleCheck(['guide']), upload.array('images', 5)],
   guideController.updateGuide
 );
 
@@ -44,6 +45,15 @@ router.delete(
   '/:id',
   [auth, roleCheck(['guide'])],
   guideController.deleteGuide
+);
+
+// @route   DELETE api/guides/:id/images/:imageIndex
+// @desc    Delete a specific image from a guide
+// @access  Private + guide only
+router.delete(
+  '/:id/images/:imageIndex',
+  [auth, roleCheck(['guide'])],
+  guideController.deleteGuideImage
 );
 
 module.exports = router;
