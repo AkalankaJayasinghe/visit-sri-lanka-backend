@@ -7,9 +7,16 @@ exports.handleImageUploads = (req) => {
   
   if (req.files && req.files.length > 0) {
     req.files.forEach(file => {
-      // Convert Windows-style path to URL-style path
+      // Make sure to return paths that start with /uploads/
+      // This is important for proper URL formation on the frontend
       const filePath = file.path.replace(/\\/g, '/');
-      imagePaths.push(filePath);
+      
+      // If the path doesn't start with /uploads/, add it
+      const relativePath = filePath.startsWith('/uploads') 
+        ? filePath 
+        : '/' + filePath;
+        
+      imagePaths.push(relativePath);
     });
   }
   
@@ -21,7 +28,12 @@ exports.deleteImages = (imagePaths) => {
   if (Array.isArray(imagePaths) && imagePaths.length > 0) {
     imagePaths.forEach(imagePath => {
       try {
-        fs.unlinkSync(imagePath);
+        // Remove the leading slash if present for file system operations
+        const cleanPath = imagePath.startsWith('/') 
+          ? imagePath.substring(1) 
+          : imagePath;
+          
+        fs.unlinkSync(cleanPath);
       } catch (err) {
         console.error(`Failed to delete image at ${imagePath}:`, err);
       }

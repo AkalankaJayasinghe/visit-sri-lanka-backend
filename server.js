@@ -23,6 +23,7 @@ app.use('/api/restaurants', require('./routes/restaurants'));
 app.use('/api/cabs', require('./routes/cabServices'));
 app.use('/api/guides', require('./routes/guides'));
 app.use('/api/trip-plans', require('./routes/tripPlans'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
