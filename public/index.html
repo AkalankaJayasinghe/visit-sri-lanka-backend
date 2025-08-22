@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoLife - Sustainable Living for a Greener Tomorrow</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="eco-text">Eco</span><span class="life-text">Life</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Live Sustainably, <span class="green-text">Live Better</span></h1>
+            <p class="hero-subtitle">Discover eco-friendly products and services that help you create a more sustainable lifestyle while protecting our planet for future generations.</p>
+            <div class="hero-buttons">
+                <a href="products.html" class="btn btn-primary">Explore Products</a>
+                <a href="about.html" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="nature-graphic">
+                <div class="leaf leaf-1"></div>
+                <div class="leaf leaf-2"></div>
+                <div class="leaf leaf-3"></div>
+                <div class="tree-silhouette"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose <span class="green-text">EcoLife</span>?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Sustainable Products</h3>
+                    <p>Carefully curated eco-friendly products that reduce environmental impact without compromising quality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍃</div>
+                    <h3>Natural Ingredients</h3>
+                    <p>All our products are made from natural, organic ingredients sourced from ethical suppliers worldwide.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">♻️</div>
+                    <h3>Zero Waste</h3>
+                    <p>Committed to zero-waste packaging and circular economy principles in all our operations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Impact</h3>
+                    <p>Every purchase contributes to environmental conservation projects and sustainable community development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Featured <span class="green-text">Products</span></h2>
+            <div class="gallery-grid" id="gallery-grid">
+                <div class="gallery-item active">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <h3>Organic Skincare Set</h3>
+                        <p>Natural skincare products made from organic botanical extracts</p>
+                        <span class="price">$49.99</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <h3>Bamboo Kitchen Utensils</h3>
+                        <p>Sustainable bamboo utensil set for eco-conscious cooking</p>
+                        <span class="price">$24.99</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <h3>Reusable Water Bottle</h3>
+                        <p>Stainless steel bottle with natural wood accents</p>
+                        <span class="price">$34.99</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-controls">
+                <button class="gallery-btn prev" onclick="changeSlide(-1)">❮</button>
+                <button class="gallery-btn next" onclick="changeSlide(1)">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your <span class="green-text">Sustainable Journey</span>?</h2>
+                <p>Join thousands of customers who have already made the switch to sustainable living.</p>
+                <a href="products.html" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-logo">
+                        <span class="eco-text">Eco</span><span class="life-text">Life</span>
+                    </h3>
+                    <p>Creating a sustainable future through conscious consumption and environmental stewardship.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📧</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#">Skincare</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Kitchen</a></li>
+                        <li><a href="#">Personal Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoLife. All rights reserved. Made with 💚 for the planet.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

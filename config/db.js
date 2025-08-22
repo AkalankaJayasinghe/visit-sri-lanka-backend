@@ -6,7 +6,8 @@ const connectDB = async () => {
     console.log('MongoDB Connected Successfully');
   } catch (err) {
     console.error('MongoDB Connection Error:', err.message);
-    process.exit(1);
+    console.log('Continuing without database connection for static file serving...');
+    // Don't exit the process, just continue without DB
   }
 };
 
